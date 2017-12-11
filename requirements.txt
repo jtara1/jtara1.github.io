@@ -1,0 +1,14 @@
+flask
+flask-sqlalchemy
+Flask-WTF
+
+# additional dependancies suggested by microblog creator
+flask-login
+flask-openid
+flask-mail
+sqlalchemy-migrate
+flask-whooshalchemy
+flask-babel
+guess_language
+flipflop
+coverage
