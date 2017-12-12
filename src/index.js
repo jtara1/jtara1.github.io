@@ -1,5 +1,5 @@
-import bernolli_trials from './bernolli.js'
-
 function main() {
 
 }
+
+window.location.replace("bernoulli.html");

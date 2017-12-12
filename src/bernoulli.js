@@ -13,11 +13,11 @@ function binomial_distribution(n, r) {
     return factorial(n) / (factorial(r) * factorial(n - r))
 }
 
-function bernolli_trials(trials, prob_of_success) {
+function bernoulli_trials(trials, prob_of_success) {
     var divider = "----------------------------------------";
     var successes = 0;
     var prob = 1;
-    var probilities = [];
+    var probabilities = [];
     var output = ["trials = " + trials + ", success = " + prob_of_success,
                   divider]
     var prob_of_failure = 1 - prob_of_success;
@@ -27,36 +27,41 @@ function bernolli_trials(trials, prob_of_success) {
             * Math.pow(prob_of_success, successes)
             * Math.pow(prob_of_failure, trials - successes);
         prob = prob.toPrecision(3);
-        output.push("successes = " + successes + ", probility = " + prob);
+        output.push("successes = " + successes + ", probability = " + prob);
 
         successes++;
-        probilities.push(prob);
+        probabilities.push(prob);
     }
 
     output.push(divider);
-    for (var i = 1; i < probilities.length; i++) {
-        output.push("successes >= " + i + ", probability = " + probilities[i]);
+    for (var i = 1; i < probabilities.length; i++) {
+        output.push("successes >= " + i + ", probability = " + probabilities[i]);
     }
     return output;
 }
 
-function bernolli_calc() {
+/**
+ * Gets values from id="bernoulli_form" and computes probabilities using
+ * bernoulli_trials then renders the output of the trials to the document
+ * @returns {boolean}
+ */
+function bernoulli_calc() {
     // trials
-    var t = Number(document.forms.namedItem("bernolli_form")
+    var t = Number(document.forms.namedItem("bernoulli_form")
                    .children.namedItem("trials").value);
     // probability of a single success
-    var s = Number(document.forms.namedItem("bernolli_form")
+    var s = Number(document.forms.namedItem("bernoulli_form")
                    .children.namedItem("success").value);
-    var bernolli_info = bernolli_trials(t, s);
+    var bernoulli_info = bernoulli_trials(t, s);
     // div element reserved for bernolli output
-    var div = document.getElementById("bernolli_output");
+    var div = document.getElementById("bernoulli_output");
     remove_children(div);  // rm previous rendered output
 
     var br = document.createElement("br");
-    // render output from bernolli_trials in HTML
-    for (var i = 0; i < bernolli_info.length; i++) {
+    // render output from bernoulli_trials in HTML
+    for (var i = 0; i < bernoulli_info.length; i++) {
         var ele = document.createElement("p");
-        ele.textContent = bernolli_info[i];
+        ele.textContent = bernoulli_info[i];
         div.appendChild(ele);
         div.appendChild(br);
     }

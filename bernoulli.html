@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jtara1's Tools</title>
+    <script src="src/bernoulli.js"></script>
+</head>
+<body>
+    <h2>Bernoulli Trials Calculator</h2>
+
+    <form id="bernoulli_form" action="" method="POST">
+        <p>Trials:</p>
+        <input id="trials" type="text" name="trials"><br>
+        <p>Probility of One Success:</p>
+        <input id="success" type="text" name="success"><br>
+        <input type="submit" value="Submit"  onclick="return bernoulli_calc();">
+    </form>
+    <div id="bernoulli_output"></div>
+</body>
+</html>
