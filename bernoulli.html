@@ -6,15 +6,27 @@
     <script src="src/bernoulli.js"></script>
 </head>
 <body>
-    <h2>Bernoulli Trials Calculator</h2>
+    <div style="float: left;">
+        <!--<h2>Bernoulli Trials Calculator</h2>-->
 
-    <form id="bernoulli_form" action="" method="POST">
-        <p>Trials:</p>
-        <input id="trials" type="text" name="trials">
-        <p>Probility of One Success:</p>
-        <input id="success" type="text" name="success"><br>
-        <input type="submit" value="Submit"  onclick="return bernoulli_calc();">
-    </form>
-    <div id="bernoulli_output"></div>
+        <form id="bernoulli_form" action="" method="POST">
+            <fieldset>
+                <legend>Bernoulli Trials Calculator</legend>
+                <p>Trials:</p>
+                <input id="trials" type="text" name="trials" value="">
+                <p>Probility of One Success:</p>
+                <input id="success" type="text" name="success" value=""><br>
+                <p>Cutoff Probability - If the probability calculated for a certain<br>
+                    successes is less than this, the successes & probability is skipped
+                </p>
+                <input id="cutoff_probability" type="text" value="0.001"><br>
+                <!--<p>Number of Successes [Start, End] we're looking for (defaults to [0, infinity))</p>-->
+                <!--<input id="successes_start" type="text" value="0">-->
+                <!--<input id="successes_end" type="text"><br>-->
+                <input type="submit" value="Submit"  onclick="return bernoulli_calc();">
+            </fieldset>
+        </form>
+    </div>
+    <div id="bernoulli_output" style="float: left; margin: 0 0 0 20px;"></div>
 </body>
 </html>
