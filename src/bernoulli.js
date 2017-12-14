@@ -9,8 +9,21 @@ function factorial(n) {
     return value;
 }
 
-function binomial_distribution(n, r) {
-    return factorial(n) / (factorial(r) * factorial(n - r))
+function n_choose_r(n, r) {
+    var r = Math.min(r, n-r);
+    if (r == 0) {
+        return 1;
+    }
+    var numerator = n;
+    for (var i = n - 1; i > n - r; i--) {
+        numerator *= i;
+    }
+
+    var denominator = 1;
+    for (var i = 2; i < r + 1; i++) {
+        denominator *= i;
+    }
+    return Math.trunc(numerator / denominator);
 }
 
 function bernoulli_trials(trials, prob_of_success) {
@@ -23,7 +36,7 @@ function bernoulli_trials(trials, prob_of_success) {
     var prob_of_failure = 1 - prob_of_success;
 
     while ((prob >= 0.0001 || successes <= 2) && trials >= successes) {
-        prob = binomial_distribution(trials, successes)
+        prob = n_choose_r(trials, successes)
             * Math.pow(prob_of_success, successes)
             * Math.pow(prob_of_failure, trials - successes);
         prob = prob.toPrecision(3);
@@ -33,9 +46,11 @@ function bernoulli_trials(trials, prob_of_success) {
         probabilities.push(prob);
     }
 
+    var add = (x, y) => (Number(x) + Number(y)).toPrecision(3);
     output.push(divider);
     for (var i = 1; i < probabilities.length; i++) {
-        output.push("successes >= " + i + ", probability = " + probabilities[i]);
+        output.push("successes >= " + i + ", probability = "
+            + probabilities.slice(i).reduce(add));
     }
     return output;
 }
@@ -49,10 +64,13 @@ function bernoulli_calc() {
     // trials
     var t = Number(document.forms.namedItem("bernoulli_form")
                    .children.namedItem("trials").value);
+
     // probability of a single success
     var s = Number(document.forms.namedItem("bernoulli_form")
                    .children.namedItem("success").value);
+
     var bernoulli_info = bernoulli_trials(t, s);
+
     // div element reserved for bernolli output
     var div = document.getElementById("bernoulli_output");
     remove_children(div);  // rm previous rendered output
