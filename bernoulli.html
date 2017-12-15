@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <title>jtara1's Tools</title>
     <script src="src/bernoulli.js"></script>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
 </head>
 <body>
     <div style="float: left;">
         <!--<h2>Bernoulli Trials Calculator</h2>-->
 
-        <form id="bernoulli_form" action="" method="POST">
-            <fieldset>
-                <legend>Bernoulli Trials Calculator</legend>
-                <p>Trials:</p>
-                <input id="trials" type="text" name="trials" value="">
-                <p>Probility of One Success:</p>
-                <input id="success" type="text" name="success" value=""><br>
-                <p>Cutoff Probability - If the probability calculated for a certain<br>
+        <form id="bernoulli_form" style="margin: 10px 0 0 20px" action="" method="POST">
+            <h1>Bernoulli Trials Calculator</h1>
+            <div class="form-group">
+                <label for="trials">Trials</label>
+                <input id="trials" type="number" name="trials" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="success">Probability of One Success</label>
+                <input id="success" type="text" name="success" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cutoff_probability">Cutoff Probability</label>
+                <input id="cutoff_probability" type="text" value="0.0001" class="form-control" aria-describedby="cutoff_probability_help">
+                <small id="cutoff_probability_help" class="form-text text-muted">
+                    If the probability calculated for a certain
                     successes is less than this, the successes & probability is skipped
-                </p>
-                <input id="cutoff_probability" type="text" value="0.001"><br>
-                <!--<p>Number of Successes [Start, End] we're looking for (defaults to [0, infinity))</p>-->
-                <!--<input id="successes_start" type="text" value="0">-->
-                <!--<input id="successes_end" type="text"><br>-->
-                <input type="submit" value="Submit"  onclick="return bernoulli_calc();">
-            </fieldset>
+                </small>
+            </div>
+            <input type="submit" class="btn btn-primary" onclick="return bernoulli_calc();">
         </form>
     </div>
-    <div id="bernoulli_output" style="float: left; margin: 0 0 0 20px;"></div>
+    <p id="bernoulli_output" style="float: left; margin: 10px 0 0 20px;"></p>
 </body>
 </html>

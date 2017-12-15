@@ -42,7 +42,7 @@ function bernoulli_trials(trials, prob_of_success, cutoff_probability) {
     for (var successes = 0; successes <= trials; successes++) {
         prob = calc_probability(successes);
         if (cutoff_probability > prob) {
-            if (prob < previous_probability) {
+            if (prob < previous_probability || prob === 0.0) {
                 break;
             } else if (prob > previous_probability) {
                 continue;
