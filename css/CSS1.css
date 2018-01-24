@@ -1,0 +1,413 @@
+* {
+	font-family:"Tahoma";
+	margin:0;
+	padding:0;
+}
+
+div {display:inline-block;}
+
+body {
+	overflow:auto;
+	background-color:#27ABD7;
+}
+
+div div a p {
+	text-align:center;
+	color:white;
+	padding:15px 0;
+	font-size:larger;
+	font-weight:bold;
+}
+
+div div a {
+	text-decoration:none;
+}
+
+#header {
+	background-color:black;
+	width:100%;
+}
+
+/* Class for each link in #header */
+.main_navbox {
+	display:inline-block;
+	width:150px;
+	height:60px;
+	border:1px solid black;
+}
+
+.main_navbox:hover {
+	background-color:#2E2E2E;
+}
+/* This makes each main nav box immediately next to the previous */
+.main_navbox:nth-child(n+2) {
+	margin-left:-5px;
+}
+
+
+#body {
+	position:relative;
+	margin:60px auto 0 auto;
+	background-color:#EEFBFF;
+	border:2px solid black;
+	width:1024px;
+	/*min-width:700px;
+	max-width:1024px;*/ 
+	height:700px;
+	border-radius:10px;		
+	display:block;
+}
+
+/* left and right IDs for index.html body */
+#left {
+	position:absolute;
+	width:50%;
+	height:670px;
+	float:left;
+	border-right:1px solid black;
+}
+
+#right {
+	position:relative;
+	width:50%;
+	height:670px;
+	float:right;
+	border-left:1px solid black;
+}
+
+#img_of_me {
+	width:auto;
+	height:550px;
+}
+
+/* ID classes is for the table on index.html */
+#classes {
+	border-collapse:collapse;
+	text-align:left;
+	margin:20px auto 0 auto;
+	min-width:350px;
+	border-top-left-radius:10px;
+}
+
+#classes td {
+
+	padding:5px;
+}
+
+#classes th {
+
+	padding:5px;
+	background-color:#27ABD7;
+	color:white;
+}
+
+#classes tr {
+	margin:0;
+	padding:0;
+}
+
+#classes tr:nth-child(odd) td {
+	background-color:#BEE5F3;
+}
+
+#classes tr:first-child th:first-child {
+	border-top-left-radius:10px;
+}
+#classes tr:first-child th:last-child {
+	border-top-right-radius:10px;
+}
+
+p.caption {
+	margin:20px auto 0 auto;
+	text-align:center;
+}
+
+hr {
+	border:1px solid black;
+}
+
+h2 {
+	text-align:center;
+}
+
+/* Here begins the new CSS for About.html */
+
+.navbar1 {
+	width:16.667%;
+	height:50px;
+	display:inline-block;
+	background-color:#B8CED2;
+	border:none;
+	position:relative;	
+}
+
+.navbar1:first-child {
+	border-top-left-radius:5px;
+}
+.navbar1:nth-child(n+2) {
+	margin-left:-5px;
+}
+.navbar1:nth-child(6) {
+	border-top-right-radius:5px;
+}
+
+.navbar1:hover {
+	background-color:#E0EFF1;
+}
+
+.narbartext1 {
+	color:black;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+#navbar1 {
+	background-color:#B8CED2;
+	display:inline-block;
+	width:100%;
+	height:50px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	border:none;
+}
+
+#navbar1:hover {
+	background-color:#B8CED2;
+}
+
+/* CSS for About_am4u.html */
+.left_about {
+	position:absolute;
+	float:left;
+	width:16.667%;
+	height:650px;
+}
+
+.right_about {
+	width:83.333%;
+	height:650px;
+	margin-left:16.667%;
+	border-left:2px solid black;
+}
+
+#img_am4u {
+	width:70%;
+	height:auto;
+	margin-top:15px;
+}
+
+.bodylist {
+	margin-top:10px;
+}
+
+.bodylist li {
+	text-align:center;
+	list-style:none;
+}
+
+.bodyol {
+	margin:0 30px 0 30px;
+}
+
+.bodytext_about {
+	text-align:center;
+	padding:10px 30px 10px 30px;
+}
+
+.bodytext {
+	text-align:center;
+	padding:0px 30px 10px 30px;
+}
+
+a.bodylinks {
+	text-decoration:none
+}
+
+a.bodylinks:link {
+	color:#27ABD7;
+}
+
+a.bodylinks:visited {
+	color:#29A329;
+}
+
+/* CSS for About_programming.html */
+iframe {
+	margin:0 auto;
+	display:block;
+}
+
+/* CSS for About_Web Dev */
+iframe.webpage_disp {
+	width:100%;
+	height:600px;
+	display:none;
+}
+
+input {
+	width:70px;
+	padding:5px;
+}
+
+/* CSS for About_art.html and other pages with images */
+#img_jahames1 {
+	width:800px;
+	height:auto;
+	margin:auto;
+}
+
+#body_about_art {
+	position:relative;
+	margin:60px auto 60px auto;
+	padding:0 0 30px 0;
+	background-color:#EEFBFF;
+	border:2px solid black;
+	width:1024px;
+	/*min-width:700px;
+	max-width:1024px;*/ 
+	height:auto;
+	border-radius:10px;		
+	display:block;
+}
+
+#left_about_art {
+	position:absolute;
+	width:50%;
+	height:auto;
+	float:left;
+}
+
+#right_about_art {
+	width:50%;
+	height:auto;
+	float:right;
+}
+
+.imgs {
+	width:400px;
+	height:auto;
+	margin:0 auto;
+	padding-top:2px;
+	padding-bottom:2px;	
+	vertical-align:top;
+	display:block;
+}
+
+.imgs:first-child {
+	margin-top:10px;
+}
+
+/* CSS for About_cad.html */
+#left_about_cad {
+	margin-left:100px;
+	height:auto;
+}
+
+#right_about_cad {
+	margin-right:100px;
+	height:auto;
+}
+
+/* CSS for About_personal.html */
+#body_about_personal {
+	position:relative;
+	margin:60px auto 60px auto;
+	padding:0 0 100px 0;
+	background-color:#EEFBFF;
+	border:2px solid black;
+	width:1024px;
+	/*min-width:700px;
+	max-width:1024px;*/ 
+	height:auto;
+	border-radius:10px;		
+	display:block;
+}
+
+/* CSS for Future.html */
+#left_future {
+	position:absolute;
+	width:50%;
+	height:700px;
+	float:left;
+	border-right:1px solid black;
+}
+
+#right_future {
+	position:relative;
+	width:50%;
+	height:700px;
+	float:right;
+	border-left:1px solid black;
+}
+
+/* CSS for Contact.html */
+#img_of_me3 {
+	-ms-transform:rotate(90deg); /* IE 9 */
+    -webkit-transform:rotate(90deg); /* Chrome, Safari, Opera */
+    transform:rotate(90deg);
+    margin-top:100px;
+}
+
+#contact_table {
+	border-collapse:collapse;
+	text-align:left;
+	margin:20px auto 0 20px;
+	min-width:300px;
+	border-top-left-radius:10px;
+}
+
+#contact_table td {
+	padding:5px;
+}
+
+#contact_table tr {
+	margin:0;
+	padding:0;
+}
+
+#contact_table td:first-child {
+	font-weight:bold;
+}
+
+#contact_table tr:nth-child(odd) td {
+	background-color:#BEE5F3;
+}
+
+#contact_table tr:first-child td:first-child {
+	border-top-left-radius:10px;
+}
+#contact_table tr:first-child td:last-child {
+	border-top-right-radius:10px;
+}
+#contact_table tr:last-child td:first-child {
+	border-bottom-left-radius:10px;
+}
+#contact_table tr:last-child td:last-child {
+	border-bottom-right-radius:10px;
+}
+
+#left_contact {
+	position:absolute;
+	width:350px;
+	height:700px;
+	float:left;
+}
+
+#right_contact {
+	width:auto;
+	height:700px;
+	margin-left:350px;
+	padding-top:10px;
+}
+
+span.header {
+	font-size:16px;
+	font-weight:bold;
+	}
+
+span.ttext {
+	text-align:center;
+	
+	}
+

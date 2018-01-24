@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<style type="text/css">
+    		.navbar1:nth-child(3) {
+    			background-color:#E0EFF1;
+    		}
+    	</style>
+    	<script>
+    		function showPanel(a,b,c) {
+				document.getElementById(a).style.display = "block";
+				document.getElementById(b).style.display = "none";
+    			document.getElementById(c).style.display = "none";    			
+			}
+			function hideAll() {
+				document.getElementById('site1').style.display = "none";
+				document.getElementById('site2').style.display = "none";
+				document.getElementById('site3').style.display = "none";
+			}
+		
+    	</script>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+        <title>JT</title>
+        <link rel="stylesheet" type="text/css" href="css/CSS1.css" />
+    </head>
+    <body>
+    	<div id="header">
+    		<div class="main_navbox"><a href="index.html"><p>Home</p></a></div>
+    		<div class="main_navbox"><a href="About_am4u.html"><p>About</p></a></div>
+    		<div class="main_navbox"><a href="Future.html"><p>Future</p></a></div>
+    		<div class="main_navbox"><a href="Contact.html"><p>Contact</p></a></div>
+    	</div>
+        <div id="body_about_art">
+        	<div id="navbar1">
+        	
+        		<div class="navbar1"><a href="About_am4u.html"><p class="narbartext1">AM4U / Critical Mass</p></a></div>
+        		<div class="navbar1"><a href="About_programming.html"><p class="narbartext1">Programming</p></a></div>
+        		<div class="navbar1"><a href="About_webdev.html"><p class="narbartext1">Web Dev</p></a></div>
+        		<div class="navbar1"><a href="About_art.html"><p class="narbartext1">Art</p></a></div>
+        		<div class="navbar1"><a href="About_cad.html"><p class="narbartext1">CAD</p></a></div>
+        		<div class="navbar1"><a href="About_personal.html"><p class="narbartext1">Personal</p></a></div>
+        	
+        	</div> 
+        	
+        		 <p class="bodytext_about">
+        		 	I became interested in creating websites through HTML &amp; CSS in high school as I found it easy to use, yet
+        		 	there was a lot that could be done with this knowledge. 
+        		 	<a href="http://www.aptana.com/" target="_blank" class="bodylinks">Aptana Studio 3</a> is the software I found to help me build websites like this one.
+        		 	<br /> <br />
+        		 	<input type="button" name="Site 1" value="Site 1" onclick="showPanel('site1','site2','site3')">
+        		 	<input type="button" name="Site 2" value="Site 2" onclick="showPanel('site2','site1','site3')">
+        		 	<input type="button" name="Site 3" value="Site 3" onclick="showPanel('site3','site2','site1')">
+        		    <input type="button" name="Hide All" value="Hide All" onclick="hideAll()">     		 	
+        		 	<br />
+        		 	Other Websites I've Made:    <br /> <br />
+        		 	<a href="otherWebsites/james' website.html" target="_blank" class="bodylinks">First Attempt</a><br />
+        		 	<iframe src="otherWebsites/james' website.html" frameborder="0" class="webpage_disp" id="site1">Site 1</iframe>
+        		 	<br />
+        		 	<a href="otherWebsites/htmloverview.html.html" target="_blank" class="bodylinks">HTML Overview</a><br />
+        		 	<iframe src="otherWebsites/htmloverview.html.html" frameborder="0" class="webpage_disp" id="site2">Site 2</iframe>
+        		 	<br />
+        		 	<a href="otherWebsites/CSS Website.html" target="_blank" class="bodylinks">Basic Layout</a>
+        		 	<iframe src="otherWebsites/CSS Website.html" frameborder="0" class="webpage_disp" id="site3">Site 3</iframe>
+        		 	<br />
+        		 </p>
+       </div>
+    </body>
+</html>
