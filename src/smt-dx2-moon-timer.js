@@ -1,0 +1,177 @@
+const EventEmitter = require('events');
+const { join } = require('path');
+
+const moment = require('moment');
+const player = require('play-sound')(opts = {});
+
+const logger = require('./logger')(module);
+
+moment().format();
+
+const config = {
+  warningMinutes: '0.25',
+  loglevel: 'info',
+  resetMinutes: 55,
+  firstCycleTime: '14 Aug 2018 17:22:00 GMT',
+  fullMoonRole: 'FullMoon',
+  newMoonRole: 'NewMoon',
+  allowRoleManagement: 'true',
+  allowImageCache: '1',
+  imagesAsThumbnails: '1',
+  showImagesVelocityCheckSeconds: '60',
+  delayBetweenImagesMs: 1050,
+  assignFloors: [50, 49, 48, 47, 46]
+};
+
+const soundFile = join(__dirname, '..', 'complete.ogg');
+
+const eventEmitter = new EventEmitter();
+
+const fullMoonRoleMention = '';
+const newMoonRoleMention = '';
+
+let currentCycleStart = moment(config.firstCycleTime);
+
+let nextNewMoonWarning;
+let nextCycleStart;// Also start of newMoon
+
+let nextFullmoonWarning;
+let nextFullmoon;
+
+let fullMoonRole;
+let newMoonRole;
+
+const warningMinutesOffset = config.warningMinutes * -1;
+const rolechangeAllowed = config.allowRoleManagement;
+
+const { resetMinutes } = config;
+
+// Hide now() behind a function for easy testing
+function GetNow() {
+  return moment.utc().add(0, 'm');
+}
+
+function LogTimes() {
+  logger.debug(`\tFullmoon time : \t\t${nextFullmoon.toDate() 
+         }\n\tFullmoon Warning time : \t${nextFullmoonWarning.toDate() 
+         }\n\tNewmoon time : \t\t\t${nextCycleStart.toDate() 
+         }\n\tNow : \t\t\t\t${GetNow().toDate()}`);
+}
+function Initialise() {
+  logger.info('initialising program');
+
+  const now = GetNow();
+  nextCycleStart = moment(currentCycleStart);
+  // Determine when the current moon cycle started, and when the next one starts.
+  while (nextCycleStart < now) {
+    currentCycleStart = moment(nextCycleStart).utc();
+    nextCycleStart.add(118, 'm');
+  }
+
+  InitialiseFullMoonTime();
+  InitialiseNewMoonTime();
+
+  LogTimes();
+  FullMoonLoop();
+
+  setTimeout( 
+    () => { 
+      SendTimeTillFullMoon();
+      SendTimeTillNewMoon();
+    }, 
+    500 
+  );
+}
+
+function InitialiseFullMoonTime() {
+  nextFullmoon = moment(currentCycleStart.utc()).add(59, 'm');
+
+  if (nextFullmoon < GetNow()) {
+    nextFullmoon.add(118, 'm');
+  }
+  nextFullmoonWarning = moment(nextFullmoon);
+  nextFullmoonWarning.add(warningMinutesOffset, 'm');
+}
+
+function InitialiseNewMoonTime() {
+  nextNewmoonWarning = moment(nextCycleStart);
+  nextNewmoonWarning.add(warningMinutesOffset, 'm');
+  if (nextNewmoonWarning < GetNow()) {
+    nextNewmoonWarning.add(118, 'm');
+  }
+}
+
+function GetTimeLeft(endTime) {
+  const timeLeft = moment.duration(endTime.diff(GetNow()));
+  const timeLeftFormatted = moment(timeLeft._data).format('hh:mm:ss');
+  return `${timeLeft.hours()}h${timeLeft.minutes()}m${timeLeft.seconds()}s`;
+}
+
+function FullMoonLoop() {
+  // run loop.
+  setTimeout(() => {
+    logger.debug('processing...');
+    now = GetNow();
+    if (now >= nextFullmoonWarning) {
+      logger.verbose(`${fullMoonRoleMention} Time until next Full Moon :${GetTimeLeft(nextFullmoon)}`);
+      nextFullmoonWarning.add(118, 'm');
+
+      LogTimes();
+    }
+
+    if (now >= nextFullmoon) {
+      logger.verbose(`${fullMoonRoleMention} Currently in Full moon! 2x MAG is live!`);
+      nextFullmoon.add(118, 'm');
+
+      LogTimes();
+    }
+
+    if (now >= nextNewMoonWarning) {
+      // SendTimeTillNewMoon(true);
+      nextNewMoonWarning.add(118, 'm');
+
+      LogTimes();
+    }
+    if (now >= nextCycleStart) {
+      logger.verbose(`${newMoonRoleMention} Currently in New moon! 2x Exp is live!`);
+
+      currentCycleStart = moment(nextCycleStart);
+      nextCycleStart.add(118, 'm');
+
+      LogTimes();
+    }
+
+    // continue the loop
+    FullMoonLoop();
+  }, 1000);
+}
+
+function SendTimeTillFullMoon() {
+  if (moment.duration(nextFullmoon.diff(GetNow())).asMinutes() > 108) {
+    logger.verbose('Currently in Full Moon! 2x Mag is live!');
+    eventEmitter.emit('fullMoon');
+  }
+
+  logger.verbose(`Time until next Full Moon :${GetTimeLeft(nextFullmoon)}`);
+}
+
+function SendTimeTillNewMoon() {
+  if (moment.duration(nextCycleStart.diff(GetNow())).asMinutes() > 108) {
+    logger.verbose('Currently in New Moon! 2x EXP is live!');
+    eventEmitter.emit('newMoon');
+  }
+
+  logger.verbose(`Time until next New Moon :${GetTimeLeft(nextCycleStart)}`);
+}
+
+function playNotificationSound() {
+  console.log('sound played', new Date());
+  player.play(soundFile, err => {
+    if (err) logger.error(err);
+  });
+}
+
+eventEmitter.on('fullMoon', playNotificationSound);
+eventEmitter.on('newMoon', playNotificationSound);
+
+Initialise();
