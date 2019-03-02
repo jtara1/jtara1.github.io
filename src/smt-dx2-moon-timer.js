@@ -1,10 +1,24 @@
-const EventEmitter = require('events');
-const { join } = require('path');
+// const EventEmitter = require('events');
+// const { join } = require('path');
 
 const moment = require('moment');
-const player = require('play-sound')(opts = {});
+// const player = require('play-sound')(opts = {});
 
-const logger = require('./logger')(module);
+// const logger = require('./logger')(module);
+const logger = {
+  print(msg, obj) {
+    console.log(msg, JSON.stringify(obj));
+  },
+  info(msg, obj) {
+    console.log(msg, JSON.stringify(obj));
+  },
+  verbose(msg, obj) {
+    console.log(msg, JSON.stringify(obj));
+  },
+  debug(msg, obj) {
+    console.log(msg, JSON.stringify(obj));
+  },
+};
 
 moment().format();
 
@@ -23,9 +37,9 @@ const config = {
   assignFloors: [50, 49, 48, 47, 46]
 };
 
-const soundFile = join(__dirname, '..', 'complete.ogg');
+// const soundFile = join(__dirname, '..', 'complete.ogg');
 
-const eventEmitter = new EventEmitter();
+// const eventEmitter = new EventEmitter();
 
 const fullMoonRoleMention = '';
 const newMoonRoleMention = '';
@@ -38,11 +52,7 @@ let nextCycleStart;// Also start of newMoon
 let nextFullmoonWarning;
 let nextFullmoon;
 
-let fullMoonRole;
-let newMoonRole;
-
 const warningMinutesOffset = config.warningMinutes * -1;
-const rolechangeAllowed = config.allowRoleManagement;
 
 const { resetMinutes } = config;
 
@@ -52,10 +62,10 @@ function GetNow() {
 }
 
 function LogTimes() {
-  logger.debug(`\tFullmoon time : \t\t${nextFullmoon.toDate() 
-         }\n\tFullmoon Warning time : \t${nextFullmoonWarning.toDate() 
-         }\n\tNewmoon time : \t\t\t${nextCycleStart.toDate() 
-         }\n\tNow : \t\t\t\t${GetNow().toDate()}`);
+  logger.debug(`\tFullmoon time : \t\t${nextFullmoon.toDate()}
+  \tFullmoon Warning time : \t${nextFullmoonWarning.toDate()}
+  \tNewmoon time : \t\t\t${nextCycleStart.toDate()}
+  \tNow : \t\t\t\t${GetNow().toDate()}`);
 }
 function Initialise() {
   logger.info('initialising program');
@@ -141,6 +151,8 @@ function FullMoonLoop() {
       LogTimes();
     }
 
+    updateDivTagTimer(GetTimeLeft(nextFullmoon), GetTimeLeft(nextCycleStart));
+
     // continue the loop
     FullMoonLoop();
   }, 1000);
@@ -149,7 +161,7 @@ function FullMoonLoop() {
 function SendTimeTillFullMoon() {
   if (moment.duration(nextFullmoon.diff(GetNow())).asMinutes() > 108) {
     logger.verbose('Currently in Full Moon! 2x Mag is live!');
-    eventEmitter.emit('fullMoon');
+    // eventEmitter.emit('fullMoon');
   }
 
   logger.verbose(`Time until next Full Moon :${GetTimeLeft(nextFullmoon)}`);
@@ -158,20 +170,22 @@ function SendTimeTillFullMoon() {
 function SendTimeTillNewMoon() {
   if (moment.duration(nextCycleStart.diff(GetNow())).asMinutes() > 108) {
     logger.verbose('Currently in New Moon! 2x EXP is live!');
-    eventEmitter.emit('newMoon');
+    // eventEmitter.emit('newMoon');
   }
 
   logger.verbose(`Time until next New Moon :${GetTimeLeft(nextCycleStart)}`);
 }
 
-function playNotificationSound() {
-  console.log('sound played', new Date());
-  player.play(soundFile, err => {
-    if (err) logger.error(err);
-  });
+function updateDivTagTimer(fullMoonTime, newMoonTime) {
+  if (this.hasOwnProperty('document') && document) {
+    const div = document.querySelector('#moon-timer');
+    if (div) {
+      div.innerText = `Full Moon: ${fullMoonTime}\nNew Moon: ${newMoonTime}`;
+    }
+  }
 }
 
-eventEmitter.on('fullMoon', playNotificationSound);
-eventEmitter.on('newMoon', playNotificationSound);
+// eventEmitter.on('fullMoon', () => {});
+// eventEmitter.on('newMoon', () => {});
 
-Initialise();
+Initialise(); // entry point
