@@ -100,7 +100,6 @@ function GetTimeLeft(endTime) {
 function FullMoonLoop() {
   // run loop.
   setTimeout(() => {
-    logger.debug('processing...');
     now = GetNow();
     if (now >= nextFullmoonWarning) {
       logger.verbose(`Time until next Full Moon :${GetTimeLeft(nextFullmoon)}`);
@@ -178,7 +177,7 @@ function alertPopup(msg) {
 async function promptTimeout(msg, timeoutTime = 60) {
   if (!this.hasOwnProperty('window') || !window) return;
 
-  if (!this.openPrompt) this.openPrompt = true;
+  if (!this.hasOwnProperty('openPrompt')) this.openPrompt = true;
   else if (this.openPrompt) return; // avoid spamming prompts every hour or so
 
   return Promise.race([
