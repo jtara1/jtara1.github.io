@@ -125,6 +125,7 @@ function FullMoonLoop() {
     if (now >= nextFullmoonWarning) {
       logger.verbose(`${fullMoonRoleMention} Time until next Full Moon :${GetTimeLeft(nextFullmoon)}`);
       nextFullmoonWarning.add(118, 'm');
+      promptTimeout('Full Moon').catch(console.error);
 
       LogTimes();
     }
@@ -139,6 +140,7 @@ function FullMoonLoop() {
     if (now >= nextNewMoonWarning) {
       // SendTimeTillNewMoon(true);
       nextNewMoonWarning.add(118, 'm');
+      promptTimeout('New Moon').catch(console.error);
 
       LogTimes();
     }
@@ -176,6 +178,10 @@ function SendTimeTillNewMoon() {
   logger.verbose(`Time until next New Moon :${GetTimeLeft(nextCycleStart)}`);
 }
 
+
+// --------------------------
+// js context is web browser
+// --------------------------
 function updateDivTagTimer(fullMoonTime, newMoonTime) {
   if (this.hasOwnProperty('document') && document) {
     const div = document.querySelector('#moon-timer');
@@ -183,6 +189,26 @@ function updateDivTagTimer(fullMoonTime, newMoonTime) {
       div.innerText = `Full Moon: ${fullMoonTime}\nNew Moon: ${newMoonTime}`;
     }
   }
+}
+
+function alertPopup(msg) {
+  if (this.hasOwnProperty('document') && document) {
+    alert(msg);
+  }
+}
+
+async function promptTimeout(msg, timeoutTime = 60) {
+  if (!this.openPrompt) this.openPrompt = true;
+  else if (this.openPrompt) return; // avoid spamming prompts every hour or so
+
+  return Promise.race([
+    new Promise(resolve => setTimeout(resolve, timeoutTime * 1000)),
+    new Promise(resolve => {
+      const response = prompt(msg);
+      this.openPrompt = false;
+      resolve(response);
+    })
+  ]);
 }
 
 // eventEmitter.on('fullMoon', () => {});
