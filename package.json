@@ -17,6 +17,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "braces": "^3.0.2",
     "glob-parent": "^6.0.0",
     "npm-run-all": "^1.7.0",
     "onchange": "^2.2.0",
