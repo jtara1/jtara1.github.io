@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>jtara1's Tools</title>
-    <script src="routes/index.js"></script>
+    <script>
+        const url = new URL(window.location);
+        url.pathname = '/year-archive';
+        window.location = url.toString();
+    </script>
 </head>
 <body>
 </body>
