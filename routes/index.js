@@ -2,4 +2,4 @@ function main() {
 
 }
 
-// window.location.replace("bernoulli.html");
+window.location.replace("bernoulli.html");
