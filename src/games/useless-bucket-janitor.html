@@ -2504,7 +2504,7 @@ ITM b
 00100100
 00100100
 00100100
-NAME seed 
+NAME seed
 DLG ITM_b
 
 ITM c
@@ -2577,7 +2577,7 @@ DLG SPR_2
 it's just a button, but the defender really hyped it up.
 
 DLG SPR_3
-To the naked eye, the asteroid does not appear to be moving, but do not be fooled! 
+To the naked eye, the asteroid does not appear to be moving, but do not be fooled!
 
 DLG SPR_4
 OH S***! It happened in a blink of the eye!
@@ -2641,12 +2641,12 @@ DLG SPR_0
   - {item "toilet"} >= 1 ?
     Aaarggh. You were supposed to clean the toilets, not destroy them! Remind me in the morning to replace you! You'd best be ready to kick the bucket.
   - else ?
-    You're nothing more than a walking bucket! Clean the toilets! 
+    You're nothing more than a walking bucket! Clean the toilets!
 }
 """
 
 DLG SPR_d
-flippity floppity, get that key back in its socketity 
+flippity floppity, get that key back in its socketity
 
 DLG ITM_9
 you acquired key of the sea.
@@ -2749,7 +2749,7 @@ DLG SPR_n
 no worr week 1, rid mer-maid dry plac
 
 DLG SPR_o
-goh nowh 
+goh nowh
 
 DLG SPR_p
 goh goh
@@ -2846,7 +2846,7 @@ DLG SPR_12
 
 DLG SPR_13
 """
-you drift off on your raft of excrements. well, they're not {wvy}yours{wvy}. 
+you drift off on your raft of excrements. well, they're not {wvy}yours{wvy}.
 
 
 you pass out from all of your trials, never to wake up again.
@@ -3000,7 +3000,7 @@ function hexColorDistance(hex1,hex2) {
 // source : http://axonflux.com/handy-rgb-to-hsl-and-rgb-to-hsv-color-model-c
 /* accepts parameters
  * h  Object = {h:x, s:y, v:z}
- * OR 
+ * OR
  * h, s, v
 */
 function HSVtoRGB(h, s, v) {
@@ -3030,7 +3030,7 @@ function HSVtoRGB(h, s, v) {
 
 /* accepts parameters
  * r  Object = {r:x, g:y, b:z}
- * OR 
+ * OR
  * r, g, b
 */
 function RGBtoHSV(r, g, b) {
@@ -3965,7 +3965,7 @@ var ExpNode = function(operator, left, right) {
 	this.Eval = function(environment,onReturn) {
 		// console.log("EVAL " + this.operator);
 		var self = this; // hack to deal with scope
-		environment.EvalOperator( this.operator, this.left, this.right, 
+		environment.EvalOperator( this.operator, this.left, this.right,
 			function(val){
 				// console.log("EVAL EXP " + self.operator + " " + val);
 				onReturn(val);
@@ -4078,7 +4078,7 @@ var ShuffleNode = function(options) {
 		// this.options[index].Eval( environment, onReturn );
 
 		optionsShuffled[index].Eval( environment, onReturn );
-		
+
 		index++;
 		if (index >= this.options.length) {
 			shuffle(this.options);
@@ -4674,7 +4674,7 @@ var Parser = function(env) {
 			}
 			return false;
 		}
-	
+
 		var operator = null;
 
 		// set is special because other operator can look like it, and it has to go first in the order of operations
@@ -4796,7 +4796,7 @@ var Parser = function(env) {
 
 		var codeState = new ParserState( new BlockNode(BlockMode.Code), codeStr );
 		codeState = ParseCode( codeState );
-		
+
 		state.curNode.AddChild( codeState.rootNode );
 
 		return state;
@@ -4971,7 +4971,7 @@ var DialogRenderer = function() {
 
 			}
 		}
-		
+
 		// call printHandler for character
 		char.OnPrint();
 	};
@@ -5344,7 +5344,7 @@ var DialogBuffer = function() {
 		if( lastPage.length == 0 )
 			buffer.splice( buffer.length-1, 1 );
 
-		//finish up 
+		//finish up
 		lastPage = buffer[ buffer.length-1 ];
 		lastRow = lastPage[ lastPage.length-1 ];
 		if( lastRow.length > 0 ) {
@@ -6569,7 +6569,7 @@ function movePlayer(direction) {
 		player().y += 1;
 		didPlayerMoveThisFrame = true;
 	}
-	
+
 	var ext = getExit( player().room, player().x, player().y );
 	var end = getEnding( player().room, player().x, player().y );
 	var itmIndex = getItemIndex( player().room, player().x, player().y );
@@ -6848,7 +6848,7 @@ function serializeWorld(skipFonts) {
 			// old non-comma separated format
 			for (i in room[id].tilemap) {
 				for (j in room[id].tilemap[i]) {
-					worldStr += room[id].tilemap[i][j];	
+					worldStr += room[id].tilemap[i][j];
 				}
 				worldStr += "\n";
 			}
@@ -7113,7 +7113,7 @@ function parseRoom(lines, i) {
 				};
 			}
 			else if ( flags.ROOM_FORMAT == 0 ) { // TODO: right now this shortcut only works w/ the old comma separate format
-				/* PLACE MULTIPLE SPRITES*/ 
+				/* PLACE MULTIPLE SPRITES*/
 				//Does find and replace in the tilemap (may be hacky, but its convenient)
 				var sprList = sprId.split(",");
 				for (row in room[id].tilemap) {
@@ -7606,7 +7606,7 @@ function getRoomPal(roomId) {
 			return "0";
 		}
 	}
-	return "0";	
+	return "0";
 }
 
 var isDialogMode = false;
@@ -7691,7 +7691,7 @@ function startDialog(dialogStr,scriptId) {
 	};
 
 	if(scriptId === undefined) {
-		scriptInterpreter.Interpret( dialogStr, onScriptEnd );		
+		scriptInterpreter.Interpret( dialogStr, onScriptEnd );
 	}
 	else {
 		if( !scriptInterpreter.HasScript(scriptId) )
@@ -9999,7 +9999,7 @@ function getRoom(name) {
 }
 
 /**
- * Helper for getting an array with unique elements 
+ * Helper for getting an array with unique elements
  * @param  {Array} array Original array
  * @return {Array}       Copy of array, excluding duplicates
  */
@@ -10188,7 +10188,7 @@ function addDialogFunction(tag, fn) {
  * Adds a custom dialog tag which executes the provided function.
  * For ease-of-use with the bitsy editor, tags can be written as
  * (tagname "parameters") in addition to the standard {tagname "parameters"}
- * 
+ *
  * Function is executed immediately when the tag is reached.
  *
  * @param {string}   tag Name of tag
@@ -10209,7 +10209,7 @@ function addDialogTag(tag, fn) {
  * Adds a custom dialog tag which executes the provided function.
  * For ease-of-use with the bitsy editor, tags can be written as
  * (tagname "parameters") in addition to the standard {tagname "parameters"}
- * 
+ *
  * Function is executed after the dialog box.
  *
  * @param {string}   tag Name of tag
@@ -10347,20 +10347,20 @@ this.hacks = this.hacks || {};
 this.hacks.bitsymuse = (function (exports,bitsy) {
 'use strict';
 var hackOptions = {
-// You need to put an entry in this list for every room ID 
-// or name that is accessible by the player, and then specify 
-// the song ID for each room. Expand this list to as many 
+// You need to put an entry in this list for every room ID
+// or name that is accessible by the player, and then specify
+// the song ID for each room. Expand this list to as many
 // rooms as you need.
 
-// If the player moves between rooms with the same audio ID 
-// the music keeps playing seamlessly. Undefined rooms will 
+// If the player moves between rooms with the same audio ID
+// the music keeps playing seamlessly. Undefined rooms will
 // keep playing whatever music they were last playing.
 
-// You can set a room to stop music when you enter by using 
-// the silenceId instead of a song ID. By default, this is 
+// You can set a room to stop music when you enter by using
+// the silenceId instead of a song ID. By default, this is
 // set to 'S'.
 
-// These values are examples, and this hack WILL NOT WORK 
+// These values are examples, and this hack WILL NOT WORK
 // with these values. Check the Readme for setup instructions.
 
 musicByRoom: {
@@ -10428,7 +10428,7 @@ function getRoom(name) {
 }
 
 /**
- * Helper for getting an array with unique elements 
+ * Helper for getting an array with unique elements
  * @param  {Array} array Original array
  * @return {Array}       Copy of array, excluding duplicates
  */
@@ -10617,7 +10617,7 @@ function addDialogFunction(tag, fn) {
  * Adds a custom dialog tag which executes the provided function.
  * For ease-of-use with the bitsy editor, tags can be written as
  * (tagname "parameters") in addition to the standard {tagname "parameters"}
- * 
+ *
  * Function is executed immediately when the tag is reached.
  *
  * @param {string}   tag Name of tag
@@ -10638,7 +10638,7 @@ function addDialogTag(tag, fn) {
  * Adds a custom dialog tag which executes the provided function.
  * For ease-of-use with the bitsy editor, tags can be written as
  * (tagname "parameters") in addition to the standard {tagname "parameters"}
- * 
+ *
  * Function is executed after the dialog box.
  *
  * @param {string}   tag Name of tag
@@ -10795,7 +10795,7 @@ return exports;
 <!--
 credits:
 -- music --
-Laser Defense (Area 1) - Hero Immortal - Trevor Lentz  
+Laser Defense (Area 1) - Hero Immortal - Trevor Lentz
 Post-Asteroid (Area 2) - Move Your Ass L - Snabisch - https://opengameart.org/users/snabisch
 Sea (Area 3) - Magic Moment - Stefan Grossmann (Stefan_Composer)
 S.O.S. Island (Area 4) - Platformer Game Music Pack/Dungeon Theme - CodeManu
@@ -10808,11 +10808,11 @@ jtara1
 bitsy
 -->
 
-<audio id="area1" src="./audio/Hero Immortal.mp3" loop></audio>
-<audio id="area2" src="./audio/Move your assL.wav" loop></audio>
-<audio id="area3" src="./audio/Magic Moment - Stefan Grossmann.flac" loop></audio>
-<audio id="area4" src="./audio/Dungeon Theme.mp3" loop></audio>
-<audio id="area5" src="./audio/awesomeness.wav" loop></audio>
+<audio id="area1" src="audio/Hero%20Immortal.mp3" loop></audio>
+<audio id="area2" src="audio/Move%20your%20assL.wav" loop></audio>
+<audio id="area3" src="audio/Magic%20Moment%20-%20Stefan%20Grossmann.flac" loop></audio>
+<audio id="area4" src="audio/Dungeon%20Theme.mp3" loop></audio>
+<audio id="area5" src="audio/awesomeness.wav" loop></audio>
 
 <!-- GAME CANVAS -->
 <canvas id='game'></canvas>
