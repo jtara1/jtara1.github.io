@@ -12,13 +12,11 @@ import { WEBSITE_TITLE } from './config';
 
 const MainNavBar = () => {
   const style = {
-    // border: '5px solid',
-    fontSize: 24,
-    marginTop: '20px',
+    fontSize: 30
   };
 
   return (
-      <Nav fluid style={{ border: '5px solid'}} className="justify-content-center" variant="pills" defaultActiveKey="home-link">
+      <Nav className="justify-content-center m-3" variant="pills" defaultActiveKey="home-link">
         <Nav.Item>
           <Nav.Link style={style} eventKey="home-link">Home</Nav.Link>
         </Nav.Item>
@@ -34,8 +32,8 @@ const App = () => (
     <MainNavBar />
     <Container className="p-3">
       <Row>
-         <h1 className="header">Welcome to {WEBSITE_TITLE}</h1>
-       </Row>
+        <h1 className="header">Welcome to {WEBSITE_TITLE}</h1>
+      </Row>
     </Container>
   </>
 );
