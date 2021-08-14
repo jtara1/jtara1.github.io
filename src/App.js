@@ -16,14 +16,14 @@ const MainNavBar = () => {
   };
 
   return (
-      <Nav className="justify-content-center m-3" variant="pills" defaultActiveKey="home-link">
-        <Nav.Item>
-          <Nav.Link style={style} eventKey="home-link">Home</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link style={style} eventKey="blogs-link">Blogs</Nav.Link>
-        </Nav.Item>
-      </Nav>
+    <Nav className="justify-content-center m-3" variant="pills" defaultActiveKey="home-link">
+      <Nav.Item>
+        <Nav.Link style={style} eventKey="home-link">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link style={style} eventKey="blogs-link">Blogs</Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 
