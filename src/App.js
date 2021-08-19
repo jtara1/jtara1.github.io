@@ -3,32 +3,24 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import {
   ListGroup,
-  Nav,
   Row
 } from 'react-bootstrap';
 
 import './App.css';
 import { WEBSITE_TITLE } from './config';
+import { MainNavBar } from './MainNavBar';
 
-const MainNavBar = () => {
-  const style = {
-    fontSize: 30
-  };
 
-  return (
-    <Nav className="justify-content-center m-3" variant="pills" defaultActiveKey="home-link">
-      <Nav.Item>
-        <Nav.Link style={style} eventKey="home-link">Home</Nav.Link>
-      </Nav.Item>
-    </Nav>
-  );
-};
+function toggleIFrame(id) {
+  const element = document.querySelector(id);
+  element.hidden = !element.hidden;
+}
 
 const App = () => (
   <>
     <MainNavBar />
-    <Container className="p-3">
-      <Row>
+    <Container className="p-3" style={{ height: "1000px", border: "5px dotted black" }}>
+      <Row className="p-1">
         <h1 className="header">Welcome to {WEBSITE_TITLE}</h1>
       </Row>
 
@@ -40,9 +32,19 @@ const App = () => (
 
       <Row xs="auto" className="justify-content-center">
         <ListGroup>
-          <ListGroup.Item href="/pages/bernoulli.html" action>Loot Box Calc (Bernoulli Trials Calc)</ListGroup.Item>
+          <ListGroup.Item action onClick={() => toggleIFrame('#bernoulli-iframe')}>
+            Loot Box Calc (Bernoulli Trials Calc)
+          </ListGroup.Item>
         </ListGroup>
       </Row>
+      <iframe
+        src={`${process.env.PUBLIC_URL}/pages/bernoulli.html`}
+        id="bernoulli-iframe"
+        height="50%"
+        width="100%"
+        frameBorder="0"
+        hidden
+      />
     </Container>
   </>
 );
