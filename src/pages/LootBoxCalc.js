@@ -92,7 +92,7 @@ function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
   const probabilities = [];
   const probOfFailure = 1 - probabilityOfSuccess;
 
-  const calcProbability = (successes) => (n_choose_r(trials, successes)
+  const calcProbability = (successes) => (nChooseR(trials, successes)
     * Math.pow(probabilityOfSuccess, successes)
     * Math.pow(probOfFailure, trials - successes)).toPrecision(3);
 
@@ -126,7 +126,8 @@ function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
   };
 }
 
-function n_choose_r(n, r) {
+/* statistical function, n C r */
+function nChooseR(n, r) {
   r = Math.min(r, n-r);
   if (r === 0) {
     return 1;
@@ -147,9 +148,9 @@ function validateBernoulliTrialsInput(trials, success, cutoff) {
   if (trials < 0) {
     alert('trials must be >= 0');
   } else if (!(success < 1 && success > 0)) {
-    alert('success must be in range [0, 1]');
+    alert('success must be in range (0, 1)');
   } else if (!(cutoff < 1 && cutoff > 0)) {
-    alert('cutoff must be in range [0, 1]');
+    alert('cutoff must be in range (0, 1)');
   } else {
     return [trials, success, cutoff];
   }
