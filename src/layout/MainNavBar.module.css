@@ -8,5 +8,14 @@
 
 .link {
     font-size: 20px;
+}
+
+.navCommon {
     color: black;
+    text-decoration: none;
+}
+
+.navCommon:hover {
+    color: inherit;
+    text-decoration: underline;
 }

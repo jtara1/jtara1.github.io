@@ -10,21 +10,21 @@ const MainNavbar = () => {
   return (
     <Navbar className={classes.bar}>
       <Container>
-        <Navbar.Brand className={classes.brand}>
-          <Link stlye={{ all: "inherit" }} to="/">
+        <Navbar.Brand>
+          <Link className={[classes.brand, classes.navCommon].join(' ')} to="/">
             jtara1
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav>
-            <Nav.Link className={classes.link}>
-              <Link stlye={{ all: "inherit" }} to="/about-me">
+            <Nav.Link as="span">
+              <Link className={[classes.link, classes.navCommon].join(' ')} to="/about-me">
                 About Me
               </Link>
             </Nav.Link>
-            <Nav.Link href="/loot-box-calc" className={classes.link}>
-              <Link stlye={{ all: "inherit" }} to="/loot-box-calc">
+            <Nav.Link as="span">
+              <Link className={[classes.link, classes.navCommon].join(' ')} to="/loot-box-calc">
                 Loot Box Calc
               </Link>
             </Nav.Link>
