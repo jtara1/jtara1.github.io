@@ -8,7 +8,7 @@ import {
 
 import './App.css';
 import { WEBSITE_TITLE } from './config';
-import { MainNavBar } from './MainNavBar';
+import { MainNavBar } from './layout/MainNavBar';
 
 
 function toggleIFrame(id) {
