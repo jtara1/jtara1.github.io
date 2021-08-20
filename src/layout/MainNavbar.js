@@ -4,7 +4,8 @@ import Container from 'react-bootstrap/Container';
 
 import classes from './MainNavBar.module.css';
 
-export const MainNavBar = () => {
+
+const MainNavbar = () => {
   return (
     <Navbar className={classes.bar}>
       <Container>
@@ -20,3 +21,5 @@ export const MainNavBar = () => {
     </Navbar>
   );
 };
+
+export default MainNavbar;
