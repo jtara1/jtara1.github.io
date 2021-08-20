@@ -8,11 +8,15 @@ const LootBoxCalc = () => {
   function onSubmit(event) {
     event.preventDefault();
 
-    setCalcResult(bernoulliTrials(
+    const validatedArgs = validateBernoulliTrialsInput(
       trialsRef.current.value,
       probabilityRef.current.value,
       cutoffProbabilityRef.current.value
-    ));
+    );
+
+    if (validatedArgs) {
+      setCalcResult(bernoulliTrials(...validatedArgs));
+    }
   }
 
   const trialsRef = createRef();
@@ -139,5 +143,16 @@ function n_choose_r(n, r) {
   return Math.trunc(numerator / denominator);
 }
 
+function validateBernoulliTrialsInput(trials, success, cutoff) {
+  if (trials < 0) {
+    alert('trials must be >= 0');
+  } else if (!(success < 1 && success > 0)) {
+    alert('success must be in range [0, 1]');
+  } else if (!(cutoff < 1 && cutoff > 0)) {
+    alert('cutoff must be in range [0, 1]');
+  } else {
+    return [trials, success, cutoff];
+  }
+}
 
 export default LootBoxCalc;
