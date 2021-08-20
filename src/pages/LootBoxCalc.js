@@ -8,13 +8,11 @@ const LootBoxCalc = () => {
   function onSubmit(event) {
     event.preventDefault();
 
-    const calcResult = bernoulliTrials(
+    setCalcResult(bernoulliTrials(
       trialsRef.current.value,
       probabilityRef.current.value,
       cutoffProbabilityRef.current.value
-    );
-
-    setCalcResult(calcResult);
+    ));
   }
 
   const trialsRef = createRef();
@@ -85,7 +83,7 @@ const LootBoxCalcResult = (props) => {
 }
 
 function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
-  let prob = 1;
+  let probability = 1;
   let prevProbability = 1;
   const probabilities = [];
   const probOfFailure = 1 - probabilityOfSuccess;
@@ -95,16 +93,16 @@ function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
     * Math.pow(probOfFailure, trials - successes)).toPrecision(3);
 
   for (let successes = 0; successes <= trials; successes++) {
-    prob = calcProbability(successes);
-    if (cutoffProbability > prob) {
-      if (prob < prevProbability || prob === 0.0) {
+    probability = calcProbability(successes);
+    if (cutoffProbability > probability) {
+      if (probability < prevProbability || probability === 0.0) {
         break;
-      } else if (prob > prevProbability) {
+      } else if (probability > prevProbability) {
         continue;
       }
     }
-    prevProbability = prob;
-    probabilities.push([successes, prob]);
+    prevProbability = probability;
+    probabilities.push([successes, probability]);
   }
 
   const add = (x, y) => (Number(x) + Number(y[1])).toPrecision(3);
@@ -126,7 +124,7 @@ function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
 
 function n_choose_r(n, r) {
   r = Math.min(r, n-r);
-  if (r == 0) {
+  if (r === 0) {
     return 1;
   }
   let numerator = n;
