@@ -5,6 +5,7 @@ import './App.css';
 import MainNavbar from './layout/MainNavbar';
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
+import LootBoxCalc from './pages/LootBoxCalc';
 
 
 const App = () => (
@@ -17,6 +18,9 @@ const App = () => (
         </Route>
         <Route path="/about-me">
           <AboutMe />
+        </Route>
+        <Route path="/loot-box-calc">
+          <LootBoxCalc />
         </Route>
       </Switch>
     </BrowserRouter>
