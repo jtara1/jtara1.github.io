@@ -23,7 +23,7 @@ const LootBoxCalc = () => {
 
   return (
     <Container>
-      <Row className="p-3">
+      <Row className="p-3" lg={2}>
         <form>
           <h2>Loot Box Calc</h2>
           <div>
@@ -118,7 +118,7 @@ function bernoulliTrials(trials, probabilityOfSuccess, cutoffProbability) {
   }
 
   return {
-    input: { trials, probOfSuccess: probabilityOfSuccess, cutoffProbability },
+    input: { trials, probabilityOfSuccess, cutoffProbability },
     probabilities: probabilities.map(([successes, probability]) => ({ successes, probability })),
     cumulativeSuccessProbabilities,
   };
