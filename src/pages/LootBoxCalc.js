@@ -74,8 +74,8 @@ const LootBoxCalcResult = (props) => {
 
   return (
     <Row className="p-3">
-      <h2>Calc Results</h2>
-      {inputRowText}
+      <h2>Results</h2>
+      <div>{inputRowText}</div>
       <div>{divider}</div>
       {renderArrayOfStrings(scalarSuccesses)}
       <div>{divider}</div>
