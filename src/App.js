@@ -6,6 +6,7 @@ import MainNavbar from './layout/MainNavbar';
 import Home from './pages/Home';
 import AboutMe from './pages/AboutMe';
 import LootBoxCalc from './pages/LootBoxCalc';
+import DollarCostAveragingCalc from './pages/DollarCostAveragingCalc';
 
 
 const App = () => (
@@ -21,6 +22,9 @@ const App = () => (
         </Route>
         <Route path="/loot-box-calc">
           <LootBoxCalc />
+        </Route>
+        <Route path="/dollar-cost-averaging-calc">
+          <DollarCostAveragingCalc />
         </Route>
       </Switch>
     </BrowserRouter>
