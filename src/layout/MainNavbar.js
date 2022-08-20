@@ -28,11 +28,6 @@ const MainNavbar = () => {
                 Loot Box Calc
               </Link>
             </Nav.Link>
-            <Nav.Link as="span">
-              <Link className={[classes.link, classes.navCommon].join(' ')} to="/dollar-cost-averaging-calc">
-                Dollar Cost Averaging Calc
-              </Link>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

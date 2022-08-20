@@ -14,10 +14,6 @@
     "lint": "eslint --autofix"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
     "rules": {
       "spaced-comment": "off"
     }
