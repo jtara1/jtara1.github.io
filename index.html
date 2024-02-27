@@ -1,0 +1,38 @@
+<html lang="en-us">
+<head>
+    <script>
+      // Function to check status of each site
+      function checkSiteStatus() {
+        document.querySelectorAll('table tr').forEach(row => {
+          const siteCell = row.querySelector('td a');
+          if (siteCell) {
+            const url = siteCell.href;
+            fetch(url, {method: 'HEAD'})
+              .then(response => {
+                if (response.ok) row.querySelector('td:last-child').textContent = 'ok';
+                else row.querySelector('td:last-child').textContent = 'error';
+              })
+              .catch(error => {
+                row.querySelector('td:last-child').textContent = 'error';
+              });
+          }
+        });
+      }
+
+      // Run the function once the page content is fully loaded
+      document.addEventListener('DOMContentLoaded', checkSiteStatus);
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <th>site</th>
+        <th>status</th>
+    <tr>
+    <tr>
+        <td><a href="https://elk.gg">elk.gg</a></td>
+        <td>checking ...</td>
+    </tr>
+</table>
+</body>
+</html>
