@@ -1,25 +1,52 @@
 <html lang="en-us">
 <head>
+    <title>jtara1.github.io</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 550px;
+            border-collapse: collapse;
+            margin: 20px;
+            box-sizing: border-box;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        @media (max-width: 600px) {
+            table {
+                width: calc(100dvw - 40px);
+            }
+        }
+    </style>
+
     <script>
-      // Function to check status of each site
+      // Update status of each site
       function checkSiteStatus() {
         document.querySelectorAll('table tr').forEach(row => {
           const siteCell = row.querySelector('td a');
-          if (siteCell) {
-            const url = siteCell.href;
-            fetch(url, {method: 'HEAD'})
-              .then(response => {
-                if (response.ok) row.querySelector('td:last-child').textContent = 'ok';
-                else row.querySelector('td:last-child').textContent = 'error';
-              })
-              .catch(error => {
-                row.querySelector('td:last-child').textContent = 'error';
-              });
-          }
+          if (!siteCell) return;
+
+          const url = siteCell.href;
+          fetch(url, { method: 'HEAD' })
+            .then(response => {
+              if (response.ok) row.querySelector('td:last-child').textContent = '\u2713 ok';
+              else row.querySelector('td:last-child').textContent = '\u2716 error';
+            })
+            .catch(error => {
+              row.querySelector('td:last-child').textContent = '\u2716 error';
+            });
         });
       }
 
-      // Run the function once the page content is fully loaded
       document.addEventListener('DOMContentLoaded', checkSiteStatus);
     </script>
 </head>
@@ -28,7 +55,7 @@
     <tr>
         <th>site</th>
         <th>status</th>
-    <tr>
+    </tr>
     <tr>
         <td><a href="https://elk.gg">elk.gg</a></td>
         <td>checking ...</td>
